@@ -1,3 +1,4 @@
+# https://github.com/leehlh888/github-actions-repo2.git
 name: Deploy website
 on:
   push:
@@ -24,7 +25,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build website
-        run: npm run build
+        run: npm run build  # once the Runner machine shutdown after workflow finished, files built lost!
+      - name: upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: |
+            dist   
+            package.json
   deploy:
     needs: build
     runs-on: ubuntu-latest
