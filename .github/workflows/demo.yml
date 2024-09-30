@@ -10,6 +10,14 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+# take quite a lot of time to "npm install", use Cache to speed it up
+# copy npm install files to ~/.npm folder
+      - name: caching
+        uses: actions/cache@v3
+        with: 
+          path: ~/.npm
+          key: deps-node-modules-${{hashFiles('**package-lock.json')}}
+# will run npm install if ~/.npm not exists
       - name: Install dependencies
         run: npm ci
       - name: Lint code
@@ -24,6 +32,12 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+# reuse the cache created by Job 'test'
+      - name: caching
+        uses: actions/cache@v3
+        with: 
+          path: ~/.npm
+          key: deps-node-modules-${{hashFiles('**package-lock.json')}}
       - name: Install dependencies
         run: npm ci
       - name: Build website
