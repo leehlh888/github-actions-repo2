@@ -15,7 +15,7 @@ jobs:
 # copy npm install files to ~/.npm folder
 # e.g. deps-node-modules-fb9113937050bf73dea448521ab863fc9db4ab6b0c3796be215d100d22641de1
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       - name: Lint code
         run: npm run lint
       - name: Test code
