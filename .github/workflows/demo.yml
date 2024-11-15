@@ -13,12 +13,7 @@ jobs:
         uses: actions/checkout@v3
 # take quite a lot of time to "npm install", use Cache to speed it up
 # copy npm install files to ~/.npm folder
-      - name: caching
-        uses: actions/cache@v3
-        with: 
-          path: ~/.npm
-          key: deps-node-modules-${{hashFiles('**package-lock.json')}}
-# will run npm install if ~/.npm not exists
+# e.g. deps-node-modules-fb9113937050bf73dea448521ab863fc9db4ab6b0c3796be215d100d22641de1
       - name: Install dependencies
         run: npm ci
       - name: Lint code
