@@ -50,6 +50,8 @@ jobs:
         run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
 # obsolete! ::set-output instruction
 #        run: find dist/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
+      - name: test111
+          run: ls
       - name: upload
         uses: actions/upload-artifact@v3
         with:
@@ -68,6 +70,7 @@ jobs:
       - name: output content
         run: ls
       - name: output filename
+# needs.build.outputs.script-file = ./index.d590f20c.js
         run: echo "${{needs.build.outputs.script-file}}"
       - name: Deploy
         run: echo "Deploying..."
