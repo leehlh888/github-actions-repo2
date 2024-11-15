@@ -51,7 +51,7 @@ jobs:
 # obsolete! ::set-output instruction
 #        run: find dist/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
       - name: test111
-        run: ls
+        run: ls -l dist
       - name: upload
         uses: actions/upload-artifact@v3
         with:
