@@ -46,8 +46,8 @@ jobs:
         run: npm run build  # once the Runner machine shutdown after workflow finished, files built lost!
       - name: publish js file # output the random generated JS file
         id: publish
-#        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
-        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' ';'
+# dist/assets/index.d590f20c.js is built => script-file=./index.d590f20c.js
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
 # obsolete! ::set-output instruction
 #        run: find dist/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
       - name: upload
