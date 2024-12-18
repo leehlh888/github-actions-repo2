@@ -1,5 +1,5 @@
 # https://github.com/leehlh888/github-actions-repo2.git
-# test1
+# test1 
 name: Deploy website
 on:
   push:
@@ -52,6 +52,7 @@ jobs:
 #        run: find dist/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
       - name: test111
         run: ls -l dist
+# upload dist-files.zip, includes (dist/*, package.json), 6 files, 57235 bytes after compressed
       - name: upload
         uses: actions/upload-artifact@v3
         with:
@@ -69,8 +70,9 @@ jobs:
             name: dist-files
       - name: output content
         run: ls
+# way to access the variable from another Job 'build'
+# needs.<job>.outputs.<var> = ./index.d590f20c.js
       - name: output filename
-# needs.build.outputs.script-file = ./index.d590f20c.js
         run: echo "${{needs.build.outputs.script-file}}"
       - name: Deploy
         run: echo "Deploying..."
