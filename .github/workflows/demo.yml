@@ -35,11 +35,13 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
 # reuse the cache created by Job 'test'
-      - name: caching
-        uses: actions/cache@v3
-        with: 
-          path: ~/.npm
-          key: deps-node-modules-${{hashFiles('**package-lock.json')}}
+
+#      - name: caching
+#        uses: actions/cache@v3
+#        with: 
+#          path: ~/.npm
+#          key: deps-node-modules-${{hashFiles('**package-lock.json')}}
+
       - name: Install dependencies
         run: npm ci
       - name: Build website
